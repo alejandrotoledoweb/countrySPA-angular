@@ -5,15 +5,15 @@ import { RouterModule } from '@angular/router';
 import { ContactPageComponent } from './shared/pages/contact-page/contact-page.component';
 
 const routes = [
-  { path: '', component: HomePageComponent },
-  { path: 'about', component: AboutPageComponent },
-  { path: 'contact', component: ContactPageComponent },
+  // { path: '', component: HomePageComponent },
+  // { path: 'about', component: AboutPageComponent },
+  // { path: 'contact', component: ContactPageComponent },
   {
     path: 'countries',
     loadChildren: () =>
       import('./countries/countries.module').then((m) => m.CountriesModule),
   },
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: 'countries' },
 ];
 
 @NgModule({

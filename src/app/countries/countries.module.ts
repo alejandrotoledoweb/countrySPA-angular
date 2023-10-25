@@ -5,6 +5,7 @@ import { ByRegionPageComponent } from './pages/by-region-page/by-region-page.com
 import { ByCountryPageComponent } from './pages/by-country-page/by-country-page.component';
 import { CountryPageComponent } from './pages/country-page/country-page.component';
 import { CountriesRoutingModule } from './countries-routing.module';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,9 @@ import { CountriesRoutingModule } from './countries-routing.module';
     ByRegionPageComponent,
     ByCountryPageComponent,
     CountryPageComponent,
+    SearchBoxComponent,
   ],
   imports: [CommonModule, CountriesRoutingModule],
+  exports: [SearchBoxComponent],
 })
 export class CountriesModule {}
