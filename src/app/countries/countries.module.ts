@@ -6,6 +6,7 @@ import { ByCountryPageComponent } from './pages/by-country-page/by-country-page.
 import { CountryPageComponent } from './pages/country-page/country-page.component';
 import { CountriesRoutingModule } from './countries-routing.module';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
+import { CountryTableComponent } from './components/country-table/country-table.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     ByCountryPageComponent,
     CountryPageComponent,
     SearchBoxComponent,
+    CountryTableComponent,
   ],
   imports: [CommonModule, CountriesRoutingModule],
   exports: [SearchBoxComponent],
