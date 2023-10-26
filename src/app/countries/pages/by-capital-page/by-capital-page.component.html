@@ -13,9 +13,10 @@
 <section class="row">
   <div class="col">
     <hr>
+    <shared-loading-spinner *ngIf="isLoading"></shared-loading-spinner>
     <!-- <ul> -->
-      <countries-table [countries]="countries"></countries-table>
-      <!-- <li *ngFor="let country of countries">{{ country.name.common }}</li> -->
+    <countries-table [countries]="countries"></countries-table>
+    <!-- <li *ngFor="let country of countries">{{ country.name.common }}</li> -->
     <!-- </ul> -->
   </div>
 </section>
