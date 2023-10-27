@@ -1,4 +1,4 @@
-<input type="text" [placeholder]="placeholder" #txtSearchInput class="ps-2"
+<input type="text" [placeholder]="placeholder" [value]="initialValue" #txtSearchInput class="ps-2"
   (keyup)="onKeyPress(txtSearchInput.value)" />
 
 <!-- (keyup.enter)="emitTerm(txtSearchInput.value)"  -->

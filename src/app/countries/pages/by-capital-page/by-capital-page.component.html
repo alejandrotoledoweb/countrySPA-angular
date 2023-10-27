@@ -6,8 +6,8 @@
   <div class="col">
 
     <!-- (onValue)="searchByCapital($event)"  -->
-    <countries-search-box (onDebounce)="searchByCapital($event)"
-      placeholder="Busqueda por capital"></countries-search-box>
+    <countries-search-box (onDebounce)="searchByCapital($event)" placeholder="Busqueda por capital"
+      [initialValue]="initialValue"></countries-search-box>
   </div>
 </section>
 

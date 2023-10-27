@@ -1,12 +1,19 @@
+import { CacheStore } from './../interfaces/cache-store.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Country } from '../interfaces/countries.interface';
 import { Observable, catchError, delay, map, of, tap } from 'rxjs';
+import { Region } from '../interfaces/region.type';
 
 @Injectable({ providedIn: 'root' })
 export class CountriesService {
 
   private apiUrl: string = 'https://restcountries.com/v3.1';
+  public cacheStore: CacheStore = {
+    byCapital: { term: '', countries: [] },
+    byCountry: { term: '', countries: [] },
+    byRegion: { region: '', countries: [] },
+  }
 
   constructor(private httpClient: HttpClient) {
     console.warn('Service Init')
@@ -30,19 +37,34 @@ export class CountriesService {
 
   searchCapital(term: string): Observable<Country[]> {
     const url = `${this.apiUrl}/capital/${term}`;
-    return this.getCountriesRequest(url);
+    return this.getCountriesRequest(url)
+      .pipe(
+        tap(countries => {
+          this.cacheStore.byCapital = { term, countries }
+        })
+      )
     // tap((countries) => console.log('paso por el tap', countries)));
   }
 
   searchCountry(term: string): Observable<Country[]> {
     const url = `${this.apiUrl}/name/${term}`;
-    return this.getCountriesRequest(url);
+    return this.getCountriesRequest(url)
+      .pipe(
+        tap(countries => {
+          this.cacheStore.byCountry = { term, countries }
+        })
+      )
     // tap((countries) => console.log('paso por el tap', countries)));
   }
 
-  searchRegion(term: string): Observable<Country[]> {
-    const url = `${this.apiUrl}/region/${term}`;
-    return this.getCountriesRequest(url);
+  searchRegion(region: Region): Observable<Country[]> {
+    const url = `${this.apiUrl}/region/${region}`;
+    return this.getCountriesRequest(url)
+      .pipe(
+        tap(countries => {
+          this.cacheStore.byRegion = { region, countries }
+        })
+      )
     // tap((countries) => console.log('paso por el tap', countries)));
   }
 }
