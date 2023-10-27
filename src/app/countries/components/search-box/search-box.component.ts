@@ -3,18 +3,22 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
-import { Subject, debounceTime } from 'rxjs';
+import { Subject, Subscription, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'countries-search-box',
   templateUrl: './search-box.component.html',
 })
-export class SearchBoxComponent implements OnInit {
+export class SearchBoxComponent implements OnInit, OnDestroy {
+
   private debouncer: Subject<string> = new Subject<string>();
+  private debouncerSubscription?: Subscription;
+
   @Output()
   onValue: EventEmitter<string> = new EventEmitter();
   @Output()
@@ -27,10 +31,14 @@ export class SearchBoxComponent implements OnInit {
   public placeholder: string = '';
 
   ngOnInit(): void {
-    this.debouncer.pipe(debounceTime(300)).subscribe((value) => {
+    this.debouncerSubscription = this.debouncer.pipe(debounceTime(300)).subscribe((value) => {
       console.warn('debouncer value:', value);
       this.onDebounce.emit(value);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.debouncerSubscription?.unsubscribe();
   }
 
   emitTerm(term: string): void {
@@ -43,6 +51,7 @@ export class SearchBoxComponent implements OnInit {
 
   onKeyPress(searchTerm: string) {
     this.debouncer.next(searchTerm);
+    // how to do it without debounce
     // if (searchTerm.length === 0) {
     //   return;
     // }

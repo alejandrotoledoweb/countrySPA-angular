@@ -5,8 +5,11 @@
 <section class="row">
   <div class="col">
 
-    <countries-search-box (onDebounce)="searchByRegion($event)"
-      placeholder="Busqueda por región"></countries-search-box>
+    <!-- <countries-search-box (onDebounce)="searchByRegion($event)"
+      placeholder="Busqueda por región"></countries-search-box> -->
+    <button *ngFor="let region of regions" class="btn mx-2"
+      [ngClass]="{'btn-outline-primary': selectedRegion === region}" (click)="searchByRegion(region)">{{ region
+      }}</button>
   </div>
 </section>
 

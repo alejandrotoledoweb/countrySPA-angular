@@ -5,8 +5,12 @@ import { Observable, catchError, delay, map, of, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CountriesService {
+
   private apiUrl: string = 'https://restcountries.com/v3.1';
-  constructor(private httpClient: HttpClient) {}
+
+  constructor(private httpClient: HttpClient) {
+    console.warn('Service Init')
+  }
 
   private getCountriesRequest(url: string): Observable<Country[]> {
     return this.httpClient.get<Country[]>(url).pipe(
@@ -19,7 +23,7 @@ export class CountriesService {
     const url = `${this.apiUrl}/alpha/${code}`;
     return this.httpClient.get<Country[]>(url).pipe(
       map((countries) => (countries.length > 0 ? countries[0] : null)),
-      delay(2000),
+      // delay(2000),
       catchError((error) => of(null))
     );
   }
