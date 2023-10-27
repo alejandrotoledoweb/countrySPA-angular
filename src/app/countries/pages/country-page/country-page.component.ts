@@ -11,6 +11,7 @@ import { Country } from '../../interfaces/countries.interface';
 })
 export class CountryPageComponent implements OnInit {
   public country?: Country;
+  public isLoading: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,6 +24,7 @@ export class CountryPageComponent implements OnInit {
     //   console.log({ params: id });
     //   this.searchCountry(id);
     // });
+    this.isLoading = true;
     this.activatedRoute.params
       .pipe(
         switchMap(({ id }) => this.countriesSerive.searchCountryByAlphaCode(id))
@@ -33,6 +35,7 @@ export class CountryPageComponent implements OnInit {
         }
         this.country = country;
         console.warn('tenemos un país');
+        this.isLoading = false;
         return;
       });
   }

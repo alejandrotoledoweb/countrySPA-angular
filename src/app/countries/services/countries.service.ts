@@ -9,15 +9,18 @@ export class CountriesService {
   constructor(private httpClient: HttpClient) {}
 
   private getCountriesRequest(url: string): Observable<Country[]> {
-    return this.httpClient.get<Country[]>(url).pipe(catchError(() => of([])));
+    return this.httpClient.get<Country[]>(url).pipe(
+      delay(2000),
+      catchError(() => of([]))
+    );
   }
 
   searchCountryByAlphaCode(code: string): Observable<Country | null> {
     const url = `${this.apiUrl}/alpha/${code}`;
     return this.httpClient.get<Country[]>(url).pipe(
       map((countries) => (countries.length > 0 ? countries[0] : null)),
-      catchError((error) => of(null)),
-      delay(10000)
+      delay(2000),
+      catchError((error) => of(null))
     );
   }
 

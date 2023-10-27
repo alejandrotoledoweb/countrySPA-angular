@@ -1,5 +1,6 @@
 <ng-template #loading>
   <p class="alert alert-info">Espere por favor</p>
+  <shared-loading-spinner *ngIf="isLoading"></shared-loading-spinner>
 </ng-template>
 
 
@@ -15,7 +16,7 @@
   <content class="row">
     <div class="col-4">
       <h3>Bandera</h3>
-      <img [src]="country.flags.svg" [alt]="country.name.common"  class="img-thumbnail" />
+      <img [src]="country.flags.svg" [alt]="country.name.common" class="img-thumbnail" />
     </div>
     <aside class="col">
       <h3>Información</h3>

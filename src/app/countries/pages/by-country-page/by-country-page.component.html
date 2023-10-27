@@ -5,7 +5,7 @@
 <section class="row">
   <div class="col">
 
-    <countries-search-box (onValue)="searchByCountry($event)" placeholder="Busqueda por país"></countries-search-box>
+    <countries-search-box (onDebounce)="searchByCountry($event)" placeholder="Busqueda por país"></countries-search-box>
   </div>
 </section>
 
@@ -14,8 +14,9 @@
   <div class="col">
     <hr>
     <!-- <ul> -->
-      <countries-table [countries]="countries"></countries-table>
-      <!-- <li *ngFor="let country of countries">{{ country.name.common }}</li> -->
+    <countries-table [countries]="countries"></countries-table>
+    <!-- <li *ngFor="let country of countries">{{ country.name.common }}</li> -->
     <!-- </ul> -->
   </div>
+  <shared-loading-spinner *ngIf="isLoading"></shared-loading-spinner>
 </section>

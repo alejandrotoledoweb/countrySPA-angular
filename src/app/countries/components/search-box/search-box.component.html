@@ -1,1 +1,4 @@
-<input type="text" [placeholder]="placeholder" #txtSearchInput (keyup.enter)="emitTerm(txtSearchInput.value)" class="ps-2" />
+<input type="text" [placeholder]="placeholder" #txtSearchInput class="ps-2"
+  (keyup)="onKeyPress(txtSearchInput.value)" />
+
+<!-- (keyup.enter)="emitTerm(txtSearchInput.value)"  -->

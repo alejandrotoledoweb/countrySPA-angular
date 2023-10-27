@@ -14,9 +14,9 @@ export class ByCapitalPageComponent {
 
   searchByCapital(term: string) {
     this.isLoading = true;
-    this.countriesService
-      .searchCapital(term)
-      .subscribe((countries) => (this.countries = countries));
-    this.isLoading = false;
+    this.countriesService.searchCapital(term).subscribe((countries) => {
+      this.countries = countries;
+      this.isLoading = false;
+    });
   }
 }
